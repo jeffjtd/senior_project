@@ -1,0 +1,7 @@
+git fetch
+git pull origin master
+git add .
+git commit -m “Description of what you did”
+git push origin master
+
+
