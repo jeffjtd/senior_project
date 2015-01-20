@@ -125,9 +125,18 @@
         <input type="submit" value="Create">
     </form>
     <?php
-        if( true)   {
-       
-        echo $_POST["hr"];
+//        if(isset($_POST["hr"]))   {
+//       
+//        echo $_POST["hr"];
+//    echo "jeff";
+     if( isset($_POST["hr"]) || isset($_POST["min"]) || isset($_POST["eventTitle"]))
+         {
+            
+            echo $_POST["hr"]; 
+            echo $_POST["min"]; 
+            echo $_POST["eventTitle"]; 
+    echo "hello";
+        
         }   
     ?>
    
