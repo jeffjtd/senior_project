@@ -1,4 +1,6 @@
+
 <!DOCTYPE html>
+
 <html>
 <head>
 	<meta charset="UTF-8">
@@ -13,8 +15,9 @@
 	<title> Test Event Date </title>
 </head>
 <body>
+   
     
-    <form method="post">
+    <form action="<?php $_PHP_SELF ?>" method="post">
         Date
         <input type="date" name="eventDateStart" id="eventDateStart"/>
         to 
@@ -117,14 +120,16 @@
       </div>
         <!-- Time End  -->
         <br>
-    Title <textarea rows="3" cols="50"></textarea>
+    Title <textarea rows="3" cols="50" name="eventTitle"></textarea>
         <br>
         <input type="submit" value="Create">
     </form>
-    
     <?php
+        if( true)   {
+       
         echo $_POST["hr"];
-        echo $_POST["min"];
+        }   
     ?>
+   
 </body>
 </html>
