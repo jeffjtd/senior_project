@@ -1,3 +1,78 @@
+<?php
+/*
+ * Copyright 2011 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+include_once "google-api-php-client/examples/templates/base.php";
+session_start();
+require_once('google-api-php-client/autoload.php');
+/************************************************
+  ATTENTION: Fill in these values! Make sure
+  the redirect URI is to this page, e.g:
+  http://localhost:8080/user-example.php
+ ************************************************/
+ $client_id = '24193142597-m4smre91ccf7i61ckip8l94ies8es3bh.apps.googleusercontent.com';
+ $client_secret = 'aMCdrU_-pfcF0E34uWTxHCaP';
+ $redirect_uri = 'http://localhost:81/senior_project/calendar.php';
+/************************************************
+  Make an API request on behalf of a user. In
+  this case we need to have a valid OAuth 2.0
+  token for the user, so we need to send them
+  through a login flow. To do this we need some
+  information from our API console project.
+ ************************************************/
+$client = new Google_Client();
+$client->setClientId($client_id);
+$client->setClientSecret($client_secret);
+$client->setRedirectUri($redirect_uri);
+$client->addScope("https://www.googleapis.com/auth/urlshortener");
+/************************************************
+  When we create the service here, we pass the
+  client to it. The client then queries the service
+  for the required scopes, and uses that when
+  generating the authentication URL later.
+ ************************************************/
+$service = new Google_Service_Urlshortener($client);
+/************************************************
+  If we're logging out we just need to clear our
+  local access token in this case
+ ************************************************/
+if (isset($_REQUEST['logout'])) {
+  unset($_SESSION['access_token']);
+}
+/************************************************
+  If we have a code back from the OAuth 2.0 flow,
+  we need to exchange that with the authenticate()
+  function. We store the resultant access token
+  bundle in the session, and redirect to ourself.
+ ************************************************/
+if (isset($_GET['code'])) {
+  $client->authenticate($_GET['code']);
+  $_SESSION['access_token'] = $client->getAccessToken();
+  $redirect = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
+  header('Location: ' . filter_var($redirect, FILTER_SANITIZE_URL));
+}
+/************************************************
+  If we have an access token, we can make
+  requests, else we generate an authentication URL.
+ ************************************************/
+if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
+  $client->setAccessToken($_SESSION['access_token']);
+} else {
+  $authUrl = $client->createAuthUrl();
+}
+?>
 
 <!DOCTYPE html>
 <html>
@@ -196,6 +271,24 @@
 </div>
 <div class="wrapper wrapper-content">
     <div class="row animated fadeInDown">
+        <div class="col-lg-12">
+            <div class="ibox-content">
+                <a class="login" href="https://accounts.google.com/o/oauth2/auth?response_type=code&amp;redirect_uri=http%3A%2F%2Flocalhost%3A81%2Fsenior_project/calendar.php&amp;client_id=24193142597-m4smre91ccf7i61ckip8l94ies8es3bh.apps.googleusercontent.com&amp;scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Furlshortener&amp;access_type=online&amp;approval_prompt=auto">Connect Me!</a>
+                <br />
+                <?php 
+                    if (isset($authUrl)) {
+                        echo "<a class='login' href='" . $authUrl . "'>Connect Me!</a>";
+                    } else {
+                    echo <<<END
+    <iframe src="https://www.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=jeffjtd745%40gmail.com&amp;color=%232952A3&amp;ctz=America%2FNew_York" style=" border-width:0 " width="800" height="600" frameborder="0" scrolling="no"></iframe>
+END;
+                    }
+                ?>
+                
+  </div>
+            </div>
+        </div>
+    <div class="row animated fadeInDown">
         <div class="col-lg-3">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
@@ -304,43 +397,32 @@
 <script src="js/plugins/fullcalendar/fullcalendar.min.js"></script>
 
 <script>
-
     $(document).ready(function() {
-
             $('.i-checks').iCheck({
                 checkboxClass: 'icheckbox_square-green',
                 radioClass: 'iradio_square-green',
             });
-
         /* initialize the external events
          -----------------------------------------------------------------*/
-
-
         $('#external-events div.external-event').each(function() {
-
             // store data so the calendar knows to render an event upon drop
             $(this).data('event', {
                 title: $.trim($(this).text()), // use the element's text as the event title
                 stick: true // maintain when user navigates (see docs on the renderEvent method)
             });
-
             // make the event draggable using jQuery UI
             $(this).draggable({
                 zIndex: 1111999,
                 revert: true,      // will cause the event to go back to its
                 revertDuration: 0  //  original position after the drag
             });
-
         });
-
-
         /* initialize the calendar
          -----------------------------------------------------------------*/
         var date = new Date();
         var d = date.getDate();
         var m = date.getMonth();
         var y = date.getFullYear();
-
         $('#calendar').fullCalendar({
             header: {
                 left: 'prev,next today',
@@ -403,10 +485,7 @@
                 }
             ],
         });
-
-
     });
-
 </script>
 </body>
 
