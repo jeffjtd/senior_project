@@ -1,0 +1,17 @@
+- input box
+- ID
+- save
+- store in the database
+- retrieve in the javascript via the database
+- user puts new input for calendar
+- displays new calendar
+- each calendar will have a container with a delete button
+- user presses delete 
+- delete the display
+- delete the corresponding ID
+
+- made calendar public 
+plugin
+- email - something@gmail.com, only calendar that you can add, 
+- america
+- time zone
