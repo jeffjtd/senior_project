@@ -24,8 +24,13 @@ require_once realpath(dirname(__FILE__) . '/../autoload.php');
   the redirect URI is to this page, e.g:
   http://localhost:8080/user-example.php
  ************************************************/
+<<<<<<< Updated upstream
  $client_id = '635183243049-55o3eb560pmdkbetr9lorqrkrr5oiv10.apps.googleusercontent.com';
  $client_secret = 'qYUZZ39iiW22tbu2KOM3875l';
+=======
+ $client_id = '635183243049-cvq4vpcl6mla7fk2f3qpls8s9bboo4lg.apps.googleusercontent.com';
+ $client_secret = '4QQUciU4XQQC0Q2ABIDARi5-';
+>>>>>>> Stashed changes
  $redirect_uri = 'http://localhost/senior_project/calendar.php';
 
 /************************************************

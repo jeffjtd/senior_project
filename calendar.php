@@ -25,6 +25,7 @@ require_once('google-api-php-client/autoload.php');
  $client_id = '635183243049-cvq4vpcl6mla7fk2f3qpls8s9bboo4lg.apps.googleusercontent.com';
  $client_secret = '4QQUciU4XQQC0Q2ABIDARi5-';
  $redirect_uri = 'http://localhost/senior_project/calendar.php';
+
 /************************************************
   Make an API request on behalf of a user. In
   this case we need to have a valid OAuth 2.0
