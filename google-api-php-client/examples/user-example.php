@@ -26,7 +26,7 @@ require_once realpath(dirname(__FILE__) . '/../autoload.php');
  ************************************************/
  $client_id = '24193142597-m4smre91ccf7i61ckip8l94ies8es3bh.apps.googleusercontent.com';
  $client_secret = 'aMCdrU_-pfcF0E34uWTxHCaP';
- $redirect_uri = 'http://localhost:81/google-api-php-client/examples/user-example.php';
+ $redirect_uri = 'http://localhost:81/senior_project/calendar.php';
 
 /************************************************
   Make an API request on behalf of a user. In
