@@ -22,9 +22,9 @@ require_once('google-api-php-client/autoload.php');
   the redirect URI is to this page, e.g:
   http://localhost:8080/user-example.php
  ************************************************/
- $client_id = '24193142597-m4smre91ccf7i61ckip8l94ies8es3bh.apps.googleusercontent.com';
- $client_secret = 'aMCdrU_-pfcF0E34uWTxHCaP';
- $redirect_uri = 'http://localhost:81/senior_project/calendar.php';
+ $client_id = '635183243049-cvq4vpcl6mla7fk2f3qpls8s9bboo4lg.apps.googleusercontent.com';
+ $client_secret = '4QQUciU4XQQC0Q2ABIDARi5-';
+ $redirect_uri = 'http://localhost/senior_project/calendar.php';
 /************************************************
   Make an API request on behalf of a user. In
   this case we need to have a valid OAuth 2.0
@@ -273,14 +273,14 @@ if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
     <div class="row animated fadeInDown">
         <div class="col-lg-12">
             <div class="ibox-content">
-                <a class="login" href="https://accounts.google.com/o/oauth2/auth?response_type=code&amp;redirect_uri=http%3A%2F%2Flocalhost%3A81%2Fsenior_project/calendar.php&amp;client_id=24193142597-m4smre91ccf7i61ckip8l94ies8es3bh.apps.googleusercontent.com&amp;scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Furlshortener&amp;access_type=online&amp;approval_prompt=auto">Connect Me!</a>
+                <!--<a class="login" href="https://accounts.google.com/o/oauth2/auth?response_type=code&amp;redirect_uri=http%3A%2F%2Flocalhost/senior_project/calendar.php&amp;client_id=635183243049-55o3eb560pmdkbetr9lorqrkrr5oiv10.apps.googleusercontent.com&amp;scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Furlshortener&amp;access_type=online&amp;approval_prompt=auto">Connect Me!</a>-->
                 <br />
                 <?php 
                     if (isset($authUrl)) {
                         echo "<a class='login' href='" . $authUrl . "'>Connect Me!</a>";
                     } else {
                     echo <<<END
-    <iframe src="https://www.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=jeffjtd745%40gmail.com&amp;color=%232952A3&amp;ctz=America%2FNew_York" style=" border-width:0 " width="800" height="600" frameborder="0" scrolling="no"></iframe>
+    <iframe src="https://www.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=blackrosestar333%40gmail.com&amp;color=%232952A3&amp;ctz=America%2FNew_York" style=" border-width:0 " width="800" height="600" frameborder="0" scrolling="no"></iframe>
 END;
                     }
                 ?>
