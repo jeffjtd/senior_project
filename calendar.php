@@ -25,8 +25,8 @@ require_once('google-api-php-client/autoload.php');
   the redirect URI is to this page, e.g:
   http://localhost:8080/user-example.php
  ************************************************/
- $client_id = '24193142597-m4smre91ccf7i61ckip8l94ies8es3bh.apps.googleusercontent.com';
- $client_secret = 'aMCdrU_-pfcF0E34uWTxHCaP';
+ $client_id = '635183243049-cvq4vpcl6mla7fk2f3qpls8s9bboo4lg.apps.googleusercontent.com';
+ $client_secret = '4QQUciU4XQQC0Q2ABIDARi5-';
  $redirect_uri = 'http://localhost:81/senior_project/calendar.php';
 
 /************************************************
@@ -284,7 +284,7 @@ if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
                         echo "<a class='login' href='" . $authUrl . "'>Connect Me!</a>";
                     } else {
                     echo <<<END
-    <iframe src="https://www.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=jeffjtd745%40gmail.com&amp;color=%232952A3&amp;ctz=America%2FNew_York" style=" border-width:0 " width="800" height="600" frameborder="0" scrolling="no"></iframe>
+    <iframe src="https://www.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=kathleen.lew3%40gmail.com&amp;color=%232952A3&amp;ctz=America%2FNew_York" style=" border-width:0 " width="800" height="600" frameborder="0" scrolling="no"></iframe>
 END;
                     }
                 ?>
@@ -304,6 +304,11 @@ $attendees = array($attendee1);
 $createdEvent = $service->events->insert('primary', $event);
 
 echo $createdEvent->getId();
+echo "<br>";
+$calendar = $service->calendars->get('primary');
+
+echo $service->__construct($client);
+echo $calendar->getSummary();
                 ?>
                 
   </div>
