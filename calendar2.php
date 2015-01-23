@@ -25,8 +25,8 @@ require_once('google-api-php-client/autoload.php');
   the redirect URI is to this page, e.g:
   http://localhost:8080/user-example.php
  ************************************************/
- $client_id = '635183243049-cvq4vpcl6mla7fk2f3qpls8s9bboo4lg.apps.googleusercontent.com';
- $client_secret = '4QQUciU4XQQC0Q2ABIDARi5-';
+ $client_id = '24193142597-m4smre91ccf7i61ckip8l94ies8es3bh.apps.googleusercontent.com';
+ $client_secret = 'aMCdrU_-pfcF0E34uWTxHCaP';
  $redirect_uri = 'http://localhost/senior_project/calendar.php';
 
 /************************************************
@@ -289,7 +289,22 @@ END;
                     }
                 ?>
                 <?php
-    include 'html/test.php'; ?>
+$event = new Google_Service_Calendar_Event();
+$event->setSummary('Appointment');
+$event->setLocation('Somewhere');
+$start = new Google_Service_Calendar_EventDateTime();
+$start->setDateTime('2011-06-03T10:00:00.000-07:00');
+$event->setStart($start);
+$end = new Google_Service_Calendar_EventDateTime();
+$end->setDateTime('2011-06-03T10:25:00.000-07:00');
+$event->setEnd($end);
+$attendee1 = new Google_Service_Calendar_EventAttendee();
+$attendee1->setEmail('jeffjtd@ufl.edu');
+$attendees = array($attendee1);
+$createdEvent = $service->events->insert('primary', $event);
+
+echo $createdEvent->getId();
+                ?>
                 
   </div>
             </div>
