@@ -284,32 +284,12 @@ if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
                         echo "<a class='login' href='" . $authUrl . "'>Connect Me!</a>";
                     } else {
                     echo <<<END
-    <iframe src="https://www.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=kathleen.lew3%40gmail.com&amp;color=%232952A3&amp;ctz=America%2FNew_York" style=" border-width:0 " width="800" height="600" frameborder="0" scrolling="no"></iframe>
+    <iframe src="https://www.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=jeffjtd745%40gmail.com&amp;color=%232952A3&amp;ctz=America%2FNew_York" style=" border-width:0 " width="800" height="600" frameborder="0" scrolling="no"></iframe>
 END;
                     }
                 ?>
                 <?php
-$event = new Google_Service_Calendar_Event();
-$event->setSummary('Appointment');
-$event->setLocation('Somewhere');
-$start = new Google_Service_Calendar_EventDateTime();
-$start->setDateTime('2011-06-03T10:00:00.000-07:00');
-$event->setStart($start);
-$end = new Google_Service_Calendar_EventDateTime();
-$end->setDateTime('2011-06-03T10:25:00.000-07:00');
-$event->setEnd($end);
-$attendee1 = new Google_Service_Calendar_EventAttendee();
-$attendee1->setEmail('jeffjtd@ufl.edu');
-$attendees = array($attendee1);
-$createdEvent = $service->events->insert('primary', $event);
-
-echo $createdEvent->getId();
-echo "<br>";
-$calendar = $service->calendars->get('primary');
-
-echo $service->__construct($client);
-echo $calendar->getSummary();
-                ?>
+    include 'html/test.php'; ?>
                 
   </div>
             </div>
