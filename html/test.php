@@ -4,12 +4,8 @@
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.js"></script>
     <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.6.0.js"></script>
     <script src="../js/example.js"></script>
-    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
-      <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
-      
-      <script src="../js/jquery-1.11.2.min.js"></script>
-	<script src="../js/jquery-ui-1.11.2/jquery-ui.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="../js/jquery-ui-1.11.2/jquery-ui.min.css">
+      <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
 
 	<script src="../js/form.js"></script>
     
@@ -21,12 +17,6 @@
        
      
     <form action="" method="post">
-        Date
-        <input type="date" name="eventDateStart" id="eventDateStart"/>
-        to 
-        <input type="date" name="eventDateEnd" id="eventDateEnd"/>
-        
-        <br/>
         Time
         <!-- Start Time -->
         <div class="group">
@@ -40,7 +30,7 @@
             <option>06</option>
             <option>07</option>
             <option>08</option>
-            <option selected>09</option>
+            <option>09</option>
             <option>10</option>
             <option>11</option>
             <option>12</option>
@@ -50,7 +40,7 @@
         <div class="blank">:</div>
         <div class="select">
           <select id="min" name="min">
-            <option selected>00</option>
+            <option>00</option>
             <option>01</option>
             <option>02</option>
             <option>03</option>
@@ -132,7 +122,7 @@
             <option>06</option>
             <option>07</option>
             <option>08</option>
-            <option selected>09</option>
+            <option>09</option>
             <option>10</option>
             <option>11</option>
             <option>12</option>
@@ -142,7 +132,7 @@
         <div class="blank">:</div>
         <div class="select">
           <select id="endmin" name="endmin">
-            <option selected>00</option>
+            <option>00</option>
             <option>01</option>
             <option>02</option>
             <option>03</option>
@@ -232,16 +222,13 @@
             </p>
         </div>
     </div>
-   
-
+    <input type="submit" value="Create">
     <hr />
     <button type="button" class="btn btn-sm btn-info" ng-click="today()">Today</button>
-
     <button type="button" class="btn btn-sm btn-danger" ng-click="clear()">Clear</button>
 </div>
        
-        <br />
-        <input type="submit" value="Create">
+        
     </form>
 
       
@@ -275,7 +262,7 @@
 //            $end->setDateTime($date . 'T' . $endhr . ':' . $endmin . ':00.000-05:00');
 //            $event->setEnd($end);
     
-    
+    /*
               $event->setSummary("hello");
     
            $start = new Google_Service_Calendar_EventDateTime();
@@ -284,23 +271,23 @@
             $end = new Google_Service_Calendar_EventDateTime();
             $end->setDateTime('2015-01-05T10:25:00.000-05:00');
             $event->setEnd($end);
-            alert("hello");
+            
             $attendee1 = new Google_Service_Calendar_EventAttendee();
             $attendee1->setEmail($email);
             $attendees = array($attendee1);
-            $createdEvent = $service->events->insert('primary', $event);
+            $createdEvent = $service->events->insert('primary', $event);*/
             
-            echo $createdEvent->getId();
-            alert("Hello2");
-            echo $date; 
-            echo $hr; 
-            echo $min;
-            echo $eventTitle;
-            echo $ampm;
-            echo $endampm;
+           // echo "Event ID---" . $createdEvent->getId();
+            
+            echo "\nDate ---" . $date; 
+            echo "\nHour---" .$hr; 
+            echo "\nMin---" . $min;
+            echo "\n eventTitle---" . $eventTitle;
+            echo "\n AMPM---" . $ampm;
+            echo "\n End AM PM---" . $endampm;
     
-            echo $endhr;
-            echo $endmin;
+            echo "\n End Hour ---" . $endhr;
+            echo "\n End min ---" . $endmin;
     
             
              
