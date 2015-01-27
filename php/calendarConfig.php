@@ -14,30 +14,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-include_once "templates/base.php";
+include_once "../google-api-php-client/examples/templates/base.php";
+include_once "../google-api-php-client/src/Google/Service/Calendar.php";
 session_start();
-
-require_once realpath(dirname(__FILE__) . '/../autoload.php');
+require_once('../google-api-php-client/autoload.php');
 
 /************************************************
   ATTENTION: Fill in these values! Make sure
   the redirect URI is to this page, e.g:
   http://localhost:8080/user-example.php
+  
+  Kathleen Client ID
+  
  ************************************************/
-<<<<<<< HEAD
- $client_id = '24193142597-m4smre91ccf7i61ckip8l94ies8es3bh.apps.googleusercontent.com';
- $client_secret = 'aMCdrU_-pfcF0E34uWTxHCaP';
- $redirect_uri = 'http://localhost:81/senior_project/calendar.php';
-=======
-<<<<<<< Updated upstream
- $client_id = '635183243049-55o3eb560pmdkbetr9lorqrkrr5oiv10.apps.googleusercontent.com';
- $client_secret = 'qYUZZ39iiW22tbu2KOM3875l';
-=======
  $client_id = '635183243049-cvq4vpcl6mla7fk2f3qpls8s9bboo4lg.apps.googleusercontent.com';
  $client_secret = '4QQUciU4XQQC0Q2ABIDARi5-';
->>>>>>> Stashed changes
- $redirect_uri = 'http://localhost/senior_project/calendar.php';
->>>>>>> 57348bae370d827abf794cd2d94c3568085969c5
+ $redirect_uri = 'http://localhost/senior_project/php/viewCalendar.php';
 
 /************************************************
   Make an API request on behalf of a user. In
@@ -50,16 +42,14 @@ $client = new Google_Client();
 $client->setClientId($client_id);
 $client->setClientSecret($client_secret);
 $client->setRedirectUri($redirect_uri);
-$client->addScope("https://www.googleapis.com/auth/urlshortener");
-
+$client->addScope("https://www.googleapis.com/auth/calendar");
 /************************************************
   When we create the service here, we pass the
   client to it. The client then queries the service
   for the required scopes, and uses that when
   generating the authentication URL later.
  ************************************************/
-$service = new Google_Service_Urlshortener($client);
-
+$service = new Google_Service_Calendar($client);
 /************************************************
   If we're logging out we just need to clear our
   local access token in this case
@@ -80,8 +70,7 @@ if (isset($_GET['code'])) {
   $redirect = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
   header('Location: ' . filter_var($redirect, FILTER_SANITIZE_URL));
 }
-
-/************************************************
+/******************************
   If we have an access token, we can make
   requests, else we generate an authentication URL.
  ************************************************/
@@ -90,56 +79,7 @@ if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
 } else {
   $authUrl = $client->createAuthUrl();
 }
-
-/************************************************
-  If we're signed in and have a request to shorten
-  a URL, then we create a new URL object, set the
-  unshortened URL, and call the 'insert' method on
-  the 'url' resource. Note that we re-store the
-  access_token bundle, just in case anything
-  changed during the request - the main thing that
-  might happen here is the access token itself is
-  refreshed if the application has offline access.
- ************************************************/
-if ($client->getAccessToken() && isset($_GET['url'])) {
-  $url = new Google_Service_Urlshortener_Url();
-  $url->longUrl = $_GET['url'];
-  $short = $service->url->insert($url);
-  $_SESSION['access_token'] = $client->getAccessToken();
-}
-
-echo pageHeader("User Query - URL Shortener");
-if (
-    $client_id == '<YOUR_CLIENT_ID>'
-    || $client_secret == '<YOUR_CLIENT_SECRET>'
-    || $redirect_uri == '<YOUR_REDIRECT_URI>') {
-  echo missingClientSecretsWarning();
-}
 ?>
-<div class="box">
-  <div class="request">
-<?php 
-if (isset($authUrl)) {
-  echo "<a class='login' href='" . $authUrl . "'>Connect Me!</a>";
-} else {
-  echo <<<END
-    <form id="url" method="GET" action="{$_SERVER['PHP_SELF']}">
-      <input name="url" class="url" type="text">
-      <input type="submit" value="Shorten">
-    </form>
-    <a class='logout' href='?logout'>Logout</a>
-END;
-}
-?>
-  </div>
 
-  <div class="shortened">
-<?php
-if (isset($short)) {
-  var_dump($short);
-}
-?>
-  </div>
-</div>
-<?php
-echo pageFooter(__FILE__);
+                    
+ 
