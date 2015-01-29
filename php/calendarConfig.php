@@ -79,6 +79,44 @@ if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
 } else {
   $authUrl = $client->createAuthUrl();
 }
+
+/* Start of form */
+    
+     if( isset($_POST["date"]) || isset($_POST["hr"]) || isset($_POST["min"]) || isset($_POST["eventTitle"] ) || isset($_POST["endmin"]) || isset($_POST["endhr"] ))
+         {
+            $date = $_POST["date"];
+            $hr = $_POST["hr"];
+            $min = $_POST["min"];
+            $eventTitle = $_POST["eventTitle"];
+            $ampm = $_POST["ampm"];
+            $endampm = $_POST["endampm"];
+    
+            $endhr = $_POST["endhr"];
+            $endmin = $_POST["endmin"];
+    
+            $calendar = $service->calendars->get('primary');
+            $email = $calendar->getSummary();
+    
+             if($ampm == 'PM')
+                 $hr += 12;
+            $event = new Google_Service_Calendar_Event();
+         
+            $event->setSummary($eventTitle);
+            $start = new Google_Service_Calendar_EventDateTime();
+            $start->setDateTime($date . 'T' . $hr . ':' . $min . ':00.000-05:00');
+            $event->setStart($start);
+            $end = new Google_Service_Calendar_EventDateTime();
+            $end->setDateTime($date. 'T' . $endhr . ':' . $endmin . ':00.000-05:00');
+            $event->setEnd($end);
+            
+            $attendee1 = new Google_Service_Calendar_EventAttendee();
+            $attendee1->setEmail($email);
+            $attendees = array($attendee1);
+            $createdEvent = $service->events->insert('primary', $event);
+             
+        }
+
+
 ?>
 
                     
