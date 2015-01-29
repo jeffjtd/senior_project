@@ -81,18 +81,22 @@ if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
 }
 
 /* Start of form */
-    
-     if( isset($_POST["date"]) || isset($_POST["hr"]) || isset($_POST["min"]) || isset($_POST["eventTitle"] ) || isset($_POST["endmin"]) || isset($_POST["endhr"] ))
+    if(isset($_POST['submit']))
+    {
+        header("Location: http://localhost/senior_project/php/viewCalendar.php");
+
+        
+        if( isset($_POST["date"]) || isset($_POST["hr"]) || isset($_POST["min"]) || isset($_POST["eventTitle"] ) || isset($_POST["endmin"]) || isset($_POST["endhr"] ))
          {
-            $date = $_POST["date"];
-            $hr = $_POST["hr"];
-            $min = $_POST["min"];
+            $date = htmlspecialchars($_POST["date"]);
+            $hr = htmlspecialchars($_POST["hr"]);
+            $min = htmlspecialchars($_POST["min"]);
             $eventTitle = $_POST["eventTitle"];
-            $ampm = $_POST["ampm"];
-            $endampm = $_POST["endampm"];
+            $ampm = htmlspecialchars($_POST["ampm"]);
+            $endampm = htmlspecialchars($_POST["endampm"]);
     
-            $endhr = $_POST["endhr"];
-            $endmin = $_POST["endmin"];
+            $endhr = htmlspecialchars($_POST["endhr"]);
+            $endmin = htmlspecialchars($_POST["endmin"]);
     
             $calendar = $service->calendars->get('primary');
             $email = $calendar->getSummary();
@@ -115,6 +119,8 @@ if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
             $createdEvent = $service->events->insert('primary', $event);
              
         }
+    }
+     
 
 
 ?>
