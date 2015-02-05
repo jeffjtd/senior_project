@@ -27,9 +27,9 @@ require_once('../google-api-php-client/autoload.php');
   Kathleen Client ID
   
  ************************************************/
- $client_id = '635183243049-cvq4vpcl6mla7fk2f3qpls8s9bboo4lg.apps.googleusercontent.com';
- $client_secret = '4QQUciU4XQQC0Q2ABIDARi5-';
- $redirect_uri = 'http://localhost/senior_project/php/viewCalendar.php';
+ $client_id = '24193142597-m4smre91ccf7i61ckip8l94ies8es3bh.apps.googleusercontent.com';
+ $client_secret = 'aMCdrU_-pfcF0E34uWTxHCaP';
+ $redirect_uri = 'http://localhost:81/senior_project/php/viewCalendar.php';
 
 /************************************************
   Make an API request on behalf of a user. In
@@ -83,7 +83,7 @@ if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
 /* Start of form */
     if(isset($_POST['submit']))
     {
-        header("Location: http://localhost/senior_project/php/viewCalendar.php");
+        header("Location: http://localhost:81/senior_project/php/viewCalendar.php");
 
         
         if( isset($_POST["date"]) || isset($_POST["hr"]) || isset($_POST["min"]) || isset($_POST["eventTitle"] ) || isset($_POST["endmin"]) || isset($_POST["endhr"] ))
