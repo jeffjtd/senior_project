@@ -46,17 +46,17 @@
                             </ul>
                         </div>
                         <div class="logo-element">
-                            IN+
+                            SMP
                         </div>
                     </li>
                     <li>
                         <a href="../index.php"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboard</span></a>
                     </li>
                     <li>
-                        <a href="php/viewCalendar.php"><i class="fa fa-th-large"></i> <span class="nav-label">Google Calendar</span></a>
+                        <a href="viewCalendar.php"><i class="fa fa-th-large"></i> <span class="nav-label">Google Calendar</span></a>
                     </li>
                     <li class="active">
-                        <a href="f#"><i class="fa fa-th-large"></i> <span class="nav-label">Facebook</span></a>
+                        <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Facebook</span></a>
                     </li>
                 </ul>
 
@@ -68,11 +68,6 @@
         <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
             <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
-            <form role="search" class="navbar-form-custom" method="post" action="search_results.html">
-                <div class="form-group">
-                    <input type="text" placeholder="Search for something..." class="form-control" name="top-search" id="top-search">
-                </div>
-            </form>
         </div>
             <ul class="nav navbar-top-links navbar-right">
                 <li>
@@ -88,6 +83,9 @@
         </nav>
         </div>
                 <div class="row  border-bottom white-bg dashboard-header">
+                  <h1>
+                    Facebook Messages & Notifications
+                  </h1>
             </div>
         <div class="row">
             <div class="col-lg-12">
@@ -122,6 +120,12 @@
                                         // see if we have a session
                                         if ( isset( $session ) ) {
                                            // graph api request for user data
+                                          $request = new FacebookRequest( $session, 'GET', '/me' );
+                                          $response = $request->execute();
+                                          $graphObject = $response->getGraphObject()->asArray();
+
+                                          $name = $graphObject['name'];
+
                                           $request = new FacebookRequest( $session, 'GET', '/me/notifications' );
                                           $response = $request->execute();
                                           $graphObject = $response->getGraphObject()->asArray();    // get response
@@ -131,13 +135,26 @@
                                           $response = $request->execute();
                                           $graphObject = $response->getGraphObject()->asArray();
                                           
-                                          displayMessages($graphObject);
+                                          displayMessages($graphObject, $name);
                                         } else {
                                           $params = array(
                                             'scope' => 'manage_notifications', 'read_mailbox'
                                             );
-                                          
-                                          echo '<a href="' . $helper->getLoginUrl($params) . '">Login</a>';   // show login url
+                                          echo '<div class="row">
+                                                  <div class="col-lg-4"></div>
+                                                  <div class="col-lg-4">
+                                                      <div class="ibox float-e-margins">
+                                                        <div class="ibox-title" style="text-align:center">
+                                                        <h2>Facebook Permissions</h2> 
+                                                        <br />
+                                                        </div>
+                                                        <div class="ibox-content" style="text-align:center">
+                                                          <a style="text-decoration:none; color:white;"class="btn btn-primary btn-lg btn-link dim" role="button" href="' . $helper->getLoginUrl($params) . '">Login</a>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                </div>';
+                                          //echo '<a style="text-decoration:none; color:white;"class="btn btn-primary btn-lg btn-link dim" role="button" href="' . $helper->getLoginUrl($params) . '">Login</a>';   // show login url
                                         }
 
                                         function displayNotifications($graphObject) {
@@ -147,11 +164,13 @@
                                             }
                                           }
                                         }
-                                        function displayMessages($graphObject) {
+
+                                        function displayMessages($graphObject, $name) {
 
                                           $numChats = 0;
 
                                           for($i = 0; $i < sizeof($graphObject['data']); $i++) {
+
                                             $unreadMessages = $graphObject['data'][$i]->unread;
                                             //Check to see if there are unread chats
                                             if($unreadMessages >= 0) {
@@ -168,24 +187,17 @@
                                                             //Echo out users in group
                                                             for($numUsers = 0; $numUsers < sizeof($graphObject['data'][$i]->to->data); $numUsers++)
                                                               if( isset($graphObject['data'][$i]->to->data[$numUsers]) )
-                                                                if( $numUsers == sizeof($graphObject['data'][$i]->to->data) - 1 )
-                                                                  echo '<b>' . $graphObject['data'][$i]->to->data[$numUsers]->name . '</b>'; 
-                                                                else echo '<b>' . $graphObject['data'][$i]->to->data[$numUsers]->name . '</b>' . ', '; 
+                                                                if($graphObject['data'][$i]->to->data[$numUsers]->name != $name)
+                                                                  if( $numUsers == sizeof($graphObject['data'][$i]->to->data) - 1 )
+                                                                    echo '<b>' . $graphObject['data'][$i]->to->data[$numUsers]->name . '</b>'; 
+                                                                  else echo '<b>' . $graphObject['data'][$i]->to->data[$numUsers]->name . '</b>' . ', '; 
 
                                                       //Echo the rest of the header
                                                       echo '<div class="ibox-tools">
+                                                                 <i class="fa fa-exclamation-triangle"></i>New message(s)
                                                                 <a class="collapse-link">
                                                                     <i class="fa fa-chevron-up"></i>
                                                                 </a>
-                                                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                                                    <i class="fa fa-wrench"></i>
-                                                                </a>
-                                                                <ul class="dropdown-menu dropdown-user">
-                                                                    <li><a href="#">Config option 1</a>
-                                                                    </li>
-                                                                    <li><a href="#">Config option 2</a>
-                                                                    </li>
-                                                                </ul>
                                                                 <a class="close-link">
                                                                     <i class="fa fa-times"></i>
                                                                 </a>
@@ -201,11 +213,14 @@
                                                 }
                                               */
                                               //Echo the messages that haven't been read
-                                              for($k = sizeof($graphObject['data'][$i]->comments->data); $k > sizeof($graphObject['data'][$i]->comments->data) - $unreadMessages - 5; $k--)
-                                                if( isset($graphObject['data'][$i]->comments->data[$k-1]->message) ) {
-                                                  echo '<b>' . $graphObject['data'][$i]->comments->data[$k-1]->from->name . '</b><br />';
-                                                  echo $graphObject['data'][$i]->comments->data[$k-1]->message . '<br />';
+                                              for($k = $unreadMessages + 5; $k > 0; $k--) {
+                                                $size = sizeof($graphObject['data'][$i]->comments->data) - $k;
+
+                                                if( isset($graphObject['data'][$i]->comments->data[$size]->message) ) {
+                                                  echo '<b>' . $graphObject['data'][$i]->comments->data[$size]->from->name . '</b><br />';
+                                                  echo $graphObject['data'][$i]->comments->data[$size]->message . '<br />';
                                                 }
+                                              }
 
                                               echo '</div>
                                                     </div>
