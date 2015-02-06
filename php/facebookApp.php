@@ -16,10 +16,10 @@
     use Facebook\GraphObject;
 
     // init app with app id (APPID) and secret (SECRET)
-    FacebookSession::setDefaultApplication('647699142008684', 'd17fabe5860188788545b1bae4fd6813');
+    FacebookSession::setDefaultApplication('427760157376315', 'cafdf42e83e677212b2c90024789d231');
 
     // login helper with redirect_uri
-    $helper = new FacebookRedirectLoginHelper( 'http://localhost/senior_project/php/facebookApp.php' );
+    $helper = new FacebookRedirectLoginHelper( 'http://localhost:81/senior_project/php/facebookApp.php' );
 
     try {
       $session = $helper->getSessionFromRedirect();
@@ -35,11 +35,12 @@
       $request = new FacebookRequest( $session, 'GET', '/me/notifications' );
       $response = $request->execute();
       $graphObject = $response->getGraphObject()->asArray();    // get response
-      displayNotifications($graphObject);
+      //displayNotifications($graphObject);
 
       $request = new FacebookRequest($session, 'GET', '/me/inbox');
       $response = $request->execute();
       $graphObject = $response->getGraphObject()->asArray();
+      
       displayMessages($graphObject);
     } else {
     	$params = array(
@@ -59,9 +60,15 @@
 
 
      function displayMessages($graphObject) {
-      echo '<pre>' . print_r( $graphObject,1);
-      //for($i = 0; $i < sizeof($graphObject['data']); ++$i ) {
-         // echo '<pre>' . print_r( $graphObject['data'][$i]->message, 1);
-        
-    //  }
+      //echo '<pre>' . print_r( $graphObject,1);
+      //echo '<pre>' . print_r( $graphObject['data'][0]->comments ,1);
+      
+      for($i = 0; $i < sizeof($graphObject['data']); $i++) {
+        for($k = 0; $k < sizeof($graphObject['data'][$i]->comments->data); $k++) {
+          if( isset($graphObject['data'][$i]->comments->data[$k]->message) ) {
+            echo '<pre>' . print_r( $graphObject['data'][$i]->comments->data[$k]->from->name, 1) . '</pre>';
+            echo '<pre>' . print_r( $graphObject['data'][$i]->comments->data[$k]->message, 1) . '</pre>';
+          }
+        }
+      }
     }
