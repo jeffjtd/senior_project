@@ -120,7 +120,11 @@
                                         // see if we have a session
                                         if ( isset( $session ) ) {
                                            // graph api request for user data
+                                        $accessToken = '427760157376315' . '|' . 'cafdf42e83e677212b2c90024789d231';
+                        
+                                            
                                           $request = new FacebookRequest( $session, 'GET', '/me' );
+                                            
                                           $response = $request->execute();
                                           $graphObject = $response->getGraphObject()->asArray();
 
@@ -134,8 +138,31 @@
                                           $request = new FacebookRequest($session, 'GET', '/me/inbox');
                                           $response = $request->execute();
                                           $graphObject = $response->getGraphObject()->asArray();
-                                          
                                           displayMessages($graphObject, $name);
+                                            
+                                        $session = new FacebookSession($accessToken);
+                                           $request = new FacebookRequest(
+                                              $session,
+                                              'GET',
+                                              '/427760157376315/subscriptions'
+                                            );
+                                            $response = $request->execute();
+                                          $graphObject = $response->getGraphObject()->asArray();
+                                            echo '<pre>' . print_r($graphObject,1);
+                                            
+                                            $request = new FacebookRequest(
+                                              $session,
+                                              'POST',
+                                              '/427760157376315/subscriptions',
+                                              array (
+                                                'object' => 'user',
+                                                'callback_url' => 'callback.php',
+                                                'fields' => 'about',
+                                                'verify_token' => 'tokentest',
+                                              )
+                                            );
+                                            $response = $request->execute();
+                                            $graphObject = $response->getGraphObject();
                                         } else {
                                           $params = array(
                                             'scope' => 'manage_notifications', 'read_mailbox'
@@ -173,7 +200,7 @@
 
                                             $unreadMessages = $graphObject['data'][$i]->unread;
                                             //Check to see if there are unread chats
-                                            if($unreadMessages >= 0) {
+                                            if($unreadMessages > 0) {
 
                                               //Start a new row every 3 chats
                                               if($numChats % 3 == 0)
@@ -194,7 +221,7 @@
 
                                                       //Echo the rest of the header
                                                       echo '<div class="ibox-tools">
-                                                                 <i class="fa fa-exclamation-triangle"></i>New message(s)
+                                                                 <i class="fa fa-exclamation-triangle"></i>
                                                                 <a class="collapse-link">
                                                                     <i class="fa fa-chevron-up"></i>
                                                                 </a>
@@ -213,7 +240,7 @@
                                                 }
                                               */
                                               //Echo the messages that haven't been read
-                                              for($k = $unreadMessages + 5; $k > 0; $k--) {
+                                              for($k = $unreadMessages; $k > 0; $k--) {
                                                 $size = sizeof($graphObject['data'][$i]->comments->data) - $k;
 
                                                 if( isset($graphObject['data'][$i]->comments->data[$size]->message) ) {
