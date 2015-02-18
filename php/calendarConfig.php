@@ -101,8 +101,13 @@ if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
             $calendar = $service->calendars->get('primary');
             $email = $calendar->getSummary();
     
-             if($ampm == 'PM')
+             if($ampm == 'PM'){
                  $hr += 12;
+            }
+            if($endampm == 'PM'){
+                 $endhr += 12;
+     
+            }
             $event = new Google_Service_Calendar_Event();
          
             $event->setSummary($eventTitle);
