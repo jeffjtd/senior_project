@@ -139,7 +139,7 @@
                                           $response = $request->execute();
                                           $graphObject = $response->getGraphObject()->asArray();
                                           displayMessages($graphObject, $name);
-                                            
+                                        /*    
                                         $session = new FacebookSession($accessToken);
                                            $request = new FacebookRequest(
                                               $session,
@@ -162,7 +162,7 @@
                                               )
                                             );
                                             $response = $request->execute();
-                                            $graphObject = $response->getGraphObject();
+                                            $graphObject = $response->getGraphObject();*/
                                         } else {
                                           $params = array(
                                             'scope' => 'manage_notifications', 'read_mailbox'
