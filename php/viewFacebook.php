@@ -104,10 +104,17 @@
                                         use Facebook\GraphObject;
 
                                         // init app with app id (APPID) and secret (SECRET)
+<<<<<<< HEAD
                                         FacebookSession::setDefaultApplication('647699142008684', 'd17fabe5860188788545b1bae4fd6813');
 
                                         // login helper with redirect_uri
                                         $helper = new FacebookRedirectLoginHelper( 'http://localhost/senior_project/php/facebookApp.php' );
+=======
+                                        FacebookSession::setDefaultApplication('427760157376315', 'cafdf42e83e677212b2c90024789d231');
+
+                                        // login helper with redirect_uri
+                                        $helper = new FacebookRedirectLoginHelper( 'http://localhost:81/senior_project/php/facebookApp.php' );
+>>>>>>> 9d08caf0c0c970560fd8dd42b0945a8fc088a982
 
                                         try {
                                           $session = $helper->getSessionFromRedirect();
@@ -120,7 +127,15 @@
                                         // see if we have a session
                                         if ( isset( $session ) ) {
                                            // graph api request for user data
+<<<<<<< HEAD
                                           $request = new FacebookRequest( $session, 'GET', '/me' );
+=======
+                                        $accessToken = '427760157376315' . '|' . 'cafdf42e83e677212b2c90024789d231';
+                        
+                                            
+                                          $request = new FacebookRequest( $session, 'GET', '/me' );
+                                            
+>>>>>>> 9d08caf0c0c970560fd8dd42b0945a8fc088a982
                                           $response = $request->execute();
                                           $graphObject = $response->getGraphObject()->asArray();
 
@@ -129,11 +144,16 @@
                                           $request = new FacebookRequest( $session, 'GET', '/me/notifications' );
                                           $response = $request->execute();
                                           $graphObject = $response->getGraphObject()->asArray();    // get response
+<<<<<<< HEAD
                                           displayNotifications($graphObject);
+=======
+                                          //displayNotifications($graphObject);
+>>>>>>> 9d08caf0c0c970560fd8dd42b0945a8fc088a982
 
                                           $request = new FacebookRequest($session, 'GET', '/me/inbox');
                                           $response = $request->execute();
                                           $graphObject = $response->getGraphObject()->asArray();
+<<<<<<< HEAD
                                           
                                           displayMessages($graphObject, $name);
                                           $accessToken = '647699142008684' . '|' .'d17fabe5860188788545b1bae4fd6813';
@@ -163,6 +183,33 @@
                                             $graphObject = $response->getGraphObject();
                                              
                                           /* Real time end */
+=======
+                                          displayMessages($graphObject, $name);
+                                        /*    
+                                        $session = new FacebookSession($accessToken);
+                                           $request = new FacebookRequest(
+                                              $session,
+                                              'GET',
+                                              '/427760157376315/subscriptions'
+                                            );
+                                            $response = $request->execute();
+                                          $graphObject = $response->getGraphObject()->asArray();
+                                            echo '<pre>' . print_r($graphObject,1);
+                                            
+                                            $request = new FacebookRequest(
+                                              $session,
+                                              'POST',
+                                              '/427760157376315/subscriptions',
+                                              array (
+                                                'object' => 'user',
+                                                'callback_url' => 'callback.php',
+                                                'fields' => 'about',
+                                                'verify_token' => 'tokentest',
+                                              )
+                                            );
+                                            $response = $request->execute();
+                                            $graphObject = $response->getGraphObject();*/
+>>>>>>> 9d08caf0c0c970560fd8dd42b0945a8fc088a982
                                         } else {
                                           $params = array(
                                             'scope' => 'manage_notifications', 'read_mailbox'
@@ -187,7 +234,11 @@
                                         function displayNotifications($graphObject) {
                                           for($i = 0; $i < sizeof($graphObject['data']); ++$i ) {
                                             if($graphObject['data'][$i]->unread == 1){
+<<<<<<< HEAD
                                               echo '<pre>' . print_r( $graphObject['data'][$i]->title, 1) . '</pre>';
+=======
+                                              echo '<pre>' . print_r( $graphObject['data'][$i]->title, 1);
+>>>>>>> 9d08caf0c0c970560fd8dd42b0945a8fc088a982
                                             }
                                           }
                                         }
@@ -221,7 +272,11 @@
 
                                                       //Echo the rest of the header
                                                       echo '<div class="ibox-tools">
+<<<<<<< HEAD
                                                                  <i class="fa fa-exclamation-triangle"></i>New message(s)
+=======
+                                                                 <i class="fa fa-exclamation-triangle"></i>
+>>>>>>> 9d08caf0c0c970560fd8dd42b0945a8fc088a982
                                                                 <a class="collapse-link">
                                                                     <i class="fa fa-chevron-up"></i>
                                                                 </a>
