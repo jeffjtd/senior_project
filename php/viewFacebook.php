@@ -259,7 +259,6 @@
                                                       //Echo the rest of the header
                                                       echo '<div class="ibox-tools">
                                                                  <i class="fa fa-exclamation-triangle"></i>
-                                                                 <i class="fa fa-exclamation-triangle"></i>
                                                                 <a class="collapse-link">
                                                                     <i class="fa fa-chevron-up"></i>
                                                                 </a>
