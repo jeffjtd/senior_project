@@ -103,18 +103,14 @@
                                         use Facebook\FacebookAuthorizationException;
                                         use Facebook\GraphObject;
 
-                                        // init app with app id (APPID) and secret (SECRET)
-<<<<<<< HEAD
                                         FacebookSession::setDefaultApplication('647699142008684', 'd17fabe5860188788545b1bae4fd6813');
 
                                         // login helper with redirect_uri
-                                        $helper = new FacebookRedirectLoginHelper( 'http://localhost/senior_project/php/facebookApp.php' );
-=======
+                                        $helper = new FacebookRedirectLoginHelper( 'http://localhost:81/senior_project/php/viewFacebook.php' );
                                         FacebookSession::setDefaultApplication('427760157376315', 'cafdf42e83e677212b2c90024789d231');
 
                                         // login helper with redirect_uri
-                                        $helper = new FacebookRedirectLoginHelper( 'http://localhost:81/senior_project/php/facebookApp.php' );
->>>>>>> 9d08caf0c0c970560fd8dd42b0945a8fc088a982
+                                        $helper = new FacebookRedirectLoginHelper( 'http://localhost:81/senior_project/php/viewFacebook.php' );
 
                                         try {
                                           $session = $helper->getSessionFromRedirect();
@@ -127,15 +123,12 @@
                                         // see if we have a session
                                         if ( isset( $session ) ) {
                                            // graph api request for user data
-<<<<<<< HEAD
                                           $request = new FacebookRequest( $session, 'GET', '/me' );
-=======
                                         $accessToken = '427760157376315' . '|' . 'cafdf42e83e677212b2c90024789d231';
                         
                                             
                                           $request = new FacebookRequest( $session, 'GET', '/me' );
-                                            
->>>>>>> 9d08caf0c0c970560fd8dd42b0945a8fc088a982
+                                    
                                           $response = $request->execute();
                                           $graphObject = $response->getGraphObject()->asArray();
 
@@ -144,21 +137,18 @@
                                           $request = new FacebookRequest( $session, 'GET', '/me/notifications' );
                                           $response = $request->execute();
                                           $graphObject = $response->getGraphObject()->asArray();    // get response
-<<<<<<< HEAD
-                                          displayNotifications($graphObject);
-=======
                                           //displayNotifications($graphObject);
->>>>>>> 9d08caf0c0c970560fd8dd42b0945a8fc088a982
+                                          //displayNotifications($graphObject);
 
                                           $request = new FacebookRequest($session, 'GET', '/me/inbox');
                                           $response = $request->execute();
                                           $graphObject = $response->getGraphObject()->asArray();
-<<<<<<< HEAD
                                           
                                           displayMessages($graphObject, $name);
-                                          $accessToken = '647699142008684' . '|' .'d17fabe5860188788545b1bae4fd6813';
+                                          
+                                          //$accessToken = '647699142008684' . '|' .'d17fabe5860188788545b1bae4fd6813';
                                           /* Real time Start*/
-
+                                            /*
                                            $session = new FacebookSession($accessToken);
                                             $request = new FacebookRequest(
                                             $session,
@@ -181,10 +171,10 @@
                                             );
                                             $response = $request->execute();
                                             $graphObject = $response->getGraphObject();
-                                             
+                                                */
                                           /* Real time end */
-=======
-                                          displayMessages($graphObject, $name);
+                                          //displayMessages($graphObject, $name);
+                                            
                                         /*    
                                         $session = new FacebookSession($accessToken);
                                            $request = new FacebookRequest(
@@ -209,7 +199,6 @@
                                             );
                                             $response = $request->execute();
                                             $graphObject = $response->getGraphObject();*/
->>>>>>> 9d08caf0c0c970560fd8dd42b0945a8fc088a982
                                         } else {
                                           $params = array(
                                             'scope' => 'manage_notifications', 'read_mailbox'
@@ -223,7 +212,7 @@
                                                         <br />
                                                         </div>
                                                         <div class="ibox-content" style="text-align:center">
-                                                          <a style="text-decoration:none; color:white;"class="btn btn-primary btn-lg btn-link dim" role="button" href="' . $helper->getLoginUrl($params) . '">Login</a>
+                                                          <a style="text-decoration:none; color:white;"class="btn btn-primary btn-lg btn-link dim"                                                                  role="button" href="' . $helper->getLoginUrl($params) . '">Login</a>
                                                         </div>
                                                     </div>
                                                     </div>
@@ -234,11 +223,8 @@
                                         function displayNotifications($graphObject) {
                                           for($i = 0; $i < sizeof($graphObject['data']); ++$i ) {
                                             if($graphObject['data'][$i]->unread == 1){
-<<<<<<< HEAD
                                               echo '<pre>' . print_r( $graphObject['data'][$i]->title, 1) . '</pre>';
-=======
                                               echo '<pre>' . print_r( $graphObject['data'][$i]->title, 1);
->>>>>>> 9d08caf0c0c970560fd8dd42b0945a8fc088a982
                                             }
                                           }
                                         }
@@ -251,7 +237,7 @@
 
                                             $unreadMessages = $graphObject['data'][$i]->unread;
                                             //Check to see if there are unread chats
-                                            if($unreadMessages > 0) {
+                                            if($unreadMessages >= 0) {
 
                                               //Start a new row every 3 chats
                                               if($numChats % 3 == 0)
@@ -272,11 +258,8 @@
 
                                                       //Echo the rest of the header
                                                       echo '<div class="ibox-tools">
-<<<<<<< HEAD
-                                                                 <i class="fa fa-exclamation-triangle"></i>New message(s)
-=======
                                                                  <i class="fa fa-exclamation-triangle"></i>
->>>>>>> 9d08caf0c0c970560fd8dd42b0945a8fc088a982
+                                                                 <i class="fa fa-exclamation-triangle"></i>
                                                                 <a class="collapse-link">
                                                                     <i class="fa fa-chevron-up"></i>
                                                                 </a>
@@ -295,7 +278,7 @@
                                                 }
                                               */
                                               //Echo the messages that haven't been read
-                                              for($k = $unreadMessages; $k > 0; $k--) {
+                                              for($k = $unreadMessages+5; $k > 0; $k--) {
                                                 $size = sizeof($graphObject['data'][$i]->comments->data) - $k;
 
                                                 if( isset($graphObject['data'][$i]->comments->data[$size]->message) ) {
