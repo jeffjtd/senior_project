@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html">
+  <title>Basic jQuery Ajax with PHP</title>
+  <meta name="author" content="Jake Rocheleau">
+  <link rel="shortcut icon" href="http://d15dxvojnvxp1x.cloudfront.net/assets/favicon.ico">
+  <link rel="icon" href="http://d15dxvojnvxp1x.cloudfront.net/assets/favicon.ico">
+  <link rel="stylesheet" type="text/css" media="all" href="css/styles.css">
+  <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+  <script type="text/javascript" src="js/ajax.js"></script>
+</head>
+
+<body>
+  <div id="w">
+    <h1>Basic jQuery Ajax &amp; PHP Demo</h1>
+    
+    <div id="profile" class="clearfix">
+      <div class="heading"> 
+        <h2>Someuser's Profile</h2>
+        <h3>Joined Nov 1st, 2013 - <span id="followercnt">18</span> Followers</h3>
+        <div id="followbtncontainer" class="btncontainer"><a href="#" id="followbtn" class="bigblue">Follow</a></div>
+      </div><!-- @end .heading -->
+      
+      <div class="avatar"><img src="img/avatar.jpg" alt="avatar" width="200" height="200"></div>
+    </div><!-- @end #profile -->
+    
+    <div id="followers" class="clearfix">
+      <h3>List of Followers</h3>
+      <div class="user">
+        <a href="#" class="clearfix">
+          <img src="img/default-avatar.png" class="avi">
+          <h4>jonny_mcd</h4>
+        </a>
+      </div>
+      
+      <div class="user">
+        <a href="#" class="clearfix">
+          <img src="img/default-avatar.png" class="avi">
+          <h4>greenkittens</h4>
+        </a>
+      </div>
+      
+      <div class="user">
+        <a href="#" class="clearfix">
+          <img src="img/default-avatar.png" class="avi">
+          <h4>computerz123</h4>
+        </a>
+      </div>
+      
+      <div class="user">
+        <a href="#" class="clearfix">
+          <img src="img/default-avatar.png" class="avi">
+          <h4>cool_sneakers</h4>
+        </a>
+      </div>
+
+      <div class="user">
+        <a href="#" class="clearfix">
+          <img src="img/default-avatar.png" class="avi">
+          <h4>littleredrose</h4>
+        </a>
+      </div>
+      
+      <div class="user">
+        <a href="#" class="clearfix">
+          <img src="img/default-avatar.png" class="avi">
+          <h4>63yoo</h4>
+        </a>
+      </div>
+      
+      <div class="user">
+        <a href="#" class="clearfix">
+          <img src="img/default-avatar.png" class="avi">
+          <h4>im_a_rocketman</h4>
+        </a>
+      </div>
+
+      <div class="user">
+        <a href="#" class="clearfix">
+          <img src="img/default-avatar.png" class="avi">
+          <h4>spambot9000</h4>
+        </a>
+      </div>
+      
+      <div class="user">
+        <a href="#" class="clearfix">
+          <img src="img/default-avatar.png" class="avi">
+          <h4>kgriffin</h4>
+        </a>
+      </div>
+      
+      <div class="user">
+        <a href="#" class="clearfix">
+          <img src="img/default-avatar.png" class="avi">
+          <h4>entranced</h4>
+        </a>
+      </div>
+    </div><!-- @end #followers -->
+    
+    <div id="loadmorefollowers">
+      <a href="#pg1" id="morefllwrs" class="bigblue thinblue">Load more followers</a>
+    </div><!-- @end #loadmorefollowers -->
+  </div><!-- @end #w -->
+</body>
+</html>

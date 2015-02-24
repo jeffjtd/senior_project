@@ -15,9 +15,10 @@
  * limitations under the License.
  */
 include_once "../google-api-php-client/examples/templates/base.php";
-include_once "../google-api-php-client/src/Google/Service/Calendar.php";
+include_once "../google-api-php-client/src/Google/Service/Gmail.php";
 session_start();
 require_once('../google-api-php-client/autoload.php');
+
 
 /************************************************
   ATTENTION: Fill in these values! Make sure
@@ -29,7 +30,7 @@ require_once('../google-api-php-client/autoload.php');
  ************************************************/
  $client_id = '635183243049-cvq4vpcl6mla7fk2f3qpls8s9bboo4lg.apps.googleusercontent.com';
  $client_secret = '4QQUciU4XQQC0Q2ABIDARi5-';
- $redirect_uri = 'http://localhost/senior_project/php/viewCalendar.php';
+ $redirect_uri = 'http://localhost/senior_project/php/viewGmail.php';
 
 /************************************************
   Make an API request on behalf of a user. In
@@ -50,7 +51,7 @@ $client->addScope("https://mail.google.com/");
   for the required scopes, and uses that when
   generating the authentication URL later.
  ************************************************/
-$service = new Google_Service_Calendar($client);
+$service = new Google_Service_Gmail($client);
 /************************************************
   If we're logging out we just need to clear our
   local access token in this case
@@ -81,55 +82,55 @@ if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
   $authUrl = $client->createAuthUrl();
 }
 
-/* Start of form */
-    if(isset($_POST['submit']))
-    {
-        header("Location: http://localhost/senior_project/php/viewCalendar.php");
+/****************************** 
+ * Start of MESSAGES
+ ********************************/
 
-        
-        if( isset($_POST["date"]) || isset($_POST["hr"]) || isset($_POST["min"]) || isset($_POST["eventTitle"] ) || isset($_POST["endmin"]) || isset($_POST["endhr"] ))
-         {
-            $date = htmlspecialchars($_POST["date"]);
-            $hr = htmlspecialchars($_POST["hr"]);
-            $min = htmlspecialchars($_POST["min"]);
-            $eventTitle = $_POST["eventTitle"];
-            $ampm = htmlspecialchars($_POST["ampm"]);
-            $endampm = htmlspecialchars($_POST["endampm"]);
-    
-            $endhr = htmlspecialchars($_POST["endhr"]);
-            $endmin = htmlspecialchars($_POST["endmin"]);
-    
-            $calendar = $service->calendars->get('primary');
-            $email = $calendar->getSummary();
-    
-             if($ampm == 'PM'){
-                 $hr += 12;
-            }
-            if($endampm == 'PM'){
-                 $endhr += 12;
-     
-            }
-            $event = new Google_Service_Calendar_Event();
-         
-            $event->setSummary($eventTitle);
-            $start = new Google_Service_Calendar_EventDateTime();
-            $start->setDateTime($date . 'T' . $hr . ':' . $min . ':00.000-05:00');
-            $event->setStart($start);
-            $end = new Google_Service_Calendar_EventDateTime();
-            $end->setDateTime($date. 'T' . $endhr . ':' . $endmin . ':00.000-05:00');
-            $event->setEnd($end);
-            
-            $attendee1 = new Google_Service_Calendar_EventAttendee();
-            $attendee1->setEmail($email);
-            $attendees = array($attendee1);
-            $createdEvent = $service->events->insert('primary', $event);
-             
-        }
+/*
+ * Get list of Messages in user's mailbox.
+ *
+ * @param  Google_Service_Gmail $service Authorized Gmail API instance.
+ * @param  string $userId User's email address. The special value 'me'
+ * can be used to indicate the authenticated user.
+ * @return array Array of Messages.
+ */
+
+function listMessages($service, $userId) {
+  $pageToken = NULL;
+  $messages = array();
+  $opt_param = array();
+  do {
+    try {
+      if ($pageToken) {
+        $opt_param['pageToken'] = $pageToken;
+      }
+      $messagesResponse = $service->users_messages->listUsersMessages($userId, $opt_param);
+      if ($messagesResponse->getMessages()) {
+        $messages = array_merge($messages, $messagesResponse->getMessages());
+        $pageToken = $messagesResponse->getNextPageToken();
+      }
+    } catch (Exception $e) {
+      print 'An error occurred: ' . $e->getMessage();
     }
+  } while ($pageToken);
+
+  foreach ($messages as $message) {
+
+    $messageID = $message->getId();
+    $newMessage = $service->users_messages->get($userId, $messageID);
+    print $newMessage->getSnippet() . "<br>";
+    //  $message = $service->users_messages->get("me", $messageId);
+    //print 'Message with ID: ' . $message->getId() . ' retrieved.\n';
+     //  $message->setSnippet('niiiig');
+      // print $message->getSnippet();
+    //print $message->getSnippet();
+
+     //print 'Message' . getMessage($service, "me", $messageID) . '<br/>';
+     //print $message->getRaw();
      
+    //print 'Message with ID: ' . (string)$message.id . '<br/>';
+  }
 
+  return $messages;
+}
 
-?>
-
-                    
- 

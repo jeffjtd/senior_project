@@ -29,8 +29,12 @@
  * @author Google, Inc.
  */
 
-require_once ('C:\wamp\www\senior_project\google-api-php-client\src\Google\Service.php');
-require_once ('C:\wamp\www\senior_project\google-api-php-client\src\Google\Service\Resource.php');
+require_once ('Service.php');
+require_once ('Resource.php');
+
+
+// require_once ('C:\wamp\www\senior_project\google-api-php-client\src\Google\Service.php');
+// require_once ('C:\wamp\www\senior_project\google-api-php-client\src\Google\Service\Resource.php');
 
 
 class Google_Service_Calendar extends Google_Service

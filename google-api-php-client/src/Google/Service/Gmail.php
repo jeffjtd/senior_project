@@ -28,6 +28,13 @@
  *
  * @author Google, Inc.
  */
+
+/* Jeff & I included */
+require_once ('Service.php');
+require_once ('C:\wamp\www\senior_project\google-api-php-client\src\Google\Collection.php');
+require_once ('Resource.php');
+
+
 class Google_Service_Gmail extends Google_Service
 {
   /** View and manage your mail. */
@@ -1302,6 +1309,7 @@ class Google_Service_Gmail_History extends Google_Collection
   }
   public function getId()
   {
+
     return $this->id;
   }
   public function setMessages($messages)
@@ -1335,6 +1343,7 @@ class Google_Service_Gmail_Label extends Google_Model
   }
   public function getId()
   {
+
     return $this->id;
   }
   public function setLabelListVisibility($labelListVisibility)
@@ -1600,6 +1609,7 @@ class Google_Service_Gmail_Message extends Google_Collection
   }
   public function getId()
   {
+
     return $this->id;
   }
   public function setLabelIds($labelIds)
@@ -1640,6 +1650,7 @@ class Google_Service_Gmail_Message extends Google_Collection
   }
   public function getSnippet()
   {
+
     return $this->snippet;
   }
   public function setThreadId($threadId)
@@ -1903,6 +1914,7 @@ class Google_Service_Gmail_Thread extends Google_Collection
   }
   public function getId()
   {
+
     return $this->id;
   }
   public function setMessages($messages)
@@ -1919,6 +1931,7 @@ class Google_Service_Gmail_Thread extends Google_Collection
   }
   public function getSnippet()
   {
+
     return $this->snippet;
   }
 }
