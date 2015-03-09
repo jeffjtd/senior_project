@@ -118,19 +118,24 @@ function listMessages($service, $userId) {
 
     $messageID = $message->getId();
     $newMessage = $service->users_messages->get($userId, $messageID);
-    print $newMessage->getSnippet() . "<br>";
-    //  $message = $service->users_messages->get("me", $messageId);
-    //print 'Message with ID: ' . $message->getId() . ' retrieved.\n';
-     //  $message->setSnippet('niiiig');
-      // print $message->getSnippet();
-    //print $message->getSnippet();
+   // print $newMessage->getLabelIds()[0] . "<br>";
+      //print $newMessage->getPayLoad()->getHeaders()[0] . "<br>";
+     // echo $newMessage->getLabelIds()[1] . "<br>";
+      //echo $newMessage->getLabelIds()[2] . "<br>";
+    //$userEmail = $service->users->getProfile($userId)[0] . "<br>";
+          /* User's individual email */
 
-     //print 'Message' . getMessage($service, "me", $messageID) . '<br/>';
-     //print $message->getRaw();
-     
-    //print 'Message with ID: ' . (string)$message.id . '<br/>';
+      /* Any messages from your inbox and messages that are in your inbox that are categorized as SENT because they were sent by you */
+      if($newMessage->getLabelIds()[0] == "INBOX" || ($newMessage->getLabelIds()[0] == "SENT" && $userId == $newMessage->getLabelIds()[0]) ){
+          
+          print " Header - " . $newMessage->getPayLoad()->getHeaders()[3]->getName() . " | " . $newMessage->getLabelIds()[0] ." | ";
+          print $newMessage->getPayLoad()->getHeaders()[3]->getValue(). "<br>";
+          print "Message : " .$newMessage->getSnippet() . "<br> <br>";
+      }
+
   }
 
   return $messages;
-}
+    
+  }  
 

@@ -14,13 +14,14 @@
     <link href="../font-awesome/css/font-awesome.css" rel="stylesheet">
 
     <!-- Morris -->
-    <link href="../css/plugins/morris/morris-0.4.3.min.css" rel="stylesheet">
+   <!-- <link href="../css/plugins/morris/morris-0.4.3.min.css" rel="stylesheet"> -->
 
     <!-- Gritter -->
     <link href="../js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
 
-    <link href="../css/animate.css" rel="stylesheet">
-    <link href="../css/style.css" rel="stylesheet">
+   <!-- <link href="../css/animate.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">-->
+    <link href="../css/minStyle.css" rel="stylesheet">
 
 </head>
 
