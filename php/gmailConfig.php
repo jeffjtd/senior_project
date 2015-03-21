@@ -16,7 +16,12 @@
  */
 include_once "../google-api-php-client/examples/templates/base.php";
 include_once "../google-api-php-client/src/Google/Service/Gmail.php";
+/* ----------------------
+
+Kat Edited 
 session_start();
+
+*/
 require_once('../google-api-php-client/autoload.php');
 
 
@@ -81,6 +86,7 @@ if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
 } else {
   $authUrl = $client->createAuthUrl();
 }
+
 
 /****************************** 
  * Start of MESSAGES

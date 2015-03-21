@@ -1,7 +1,7 @@
 
 var myApp = angular.module('app',['ui.bootstrap']);
 
-myApp.controller('TestCtrl', function($scope){
+myApp.controller('myController', function($scope){
   var tabClasses;
   
   function initTabs() {
@@ -20,11 +20,12 @@ myApp.controller('TestCtrl', function($scope){
     initTabs();
     tabClasses[tabNum] = "active";
   };
-  
+  /*
   $scope.tab1 = "This is first section";
   $scope.tab2 = "This is SECOND section";
   $scope.tab3 = "This is THIRD section";
   $scope.tab4 = "This is FOUTRH section";
+  $scope.tab5 = "This is 5th section";*/
   
   //Initialize 
   initTabs();

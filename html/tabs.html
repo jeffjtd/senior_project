@@ -1,46 +1,20 @@
 <!DOCTYPE html>
-<html ng-app="app">
-
-  <head>
-
-      <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.js"></script>
-    <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.6.0.js"></script>
-    <script src="../js/tabs.js"></script>
-      <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
-
+<html>
+<head>
+  <link rel="stylesheet" href="../css/test.css">
   </head>
+  <body>
+   <div class="form">
+    <div class="avi"></div>
+  <form>
+    <input type="text" value="Username" onfocus="this.value='';"/>
+    <input type="text" value="Password" onfocus="this.value='';"/>
+    <input type="submit" value="Login" action="submit"/>
+  </form>
+</div><!--form-->
+<div class="recovery">Forgot your password? <a href="#">Click here</a></div>
 
-  <body ng-controller='TestCtrl'>
-    <div class="tabbable tabs-left">
-      <ul class="nav nav-tabs">
-         <li ng-class="getTabClass(1)" ng-click="setActiveTab(1)"><a href="#deal" data-toggle="tab">Deal</a></li>
-         <li ng-class="getTabClass(2)" ng-click="setActiveTab(2)"><a href="#bond" data-toggle="tab">Bond</a></li>
-         <li ng-class="getTabClass(3)" ng-click="setActiveTab(3)"><a href="#collateral" data-toggle="tab">Collateral</a></li>
-         <li ng-class="getTabClass(4)" ng-click="setActiveTab(4)"><a href="#rating" data-toggle="tab">Rating</a></li>
-      </ul>
-      <div class="tab-content">
-        <div ng-class="getTabPaneClass(1)" id="deal">    
-            {{tab1}}
-         </div>       
-        
-        <div ng-class="getTabPaneClass(2)" id="bond">     
-          {{tab2}}
-        </div>
-        
-        <div ng-class="getTabPaneClass(3)" id="collateral">     
-          {{tab3}}
-        </div>
-        
-        <div ng-class="getTabPaneClass(4)" id="rating">     
-          {{tab4}}
-        </div>      
-      
-      </div>
-    </div>
 
   </body>
 
 </html>
-
-
