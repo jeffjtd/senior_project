@@ -1,19 +1,7 @@
-<!DOCTYPE html>
-
-<html>
-    <div id="1"></div>
-     <form action="" method="post">   
-    Location <input type="text" name="location">
-        <br>
-    <input type="submit" name="submitLocation" value="submit">
-</div>
-    </form>
-</html>
 
 <?php
 
-
-/* Start of form */
+include_once "../html/weatherForm.html";
  if(isset($_POST['submitLocation']))
     { 
         if( isset($_POST["location"]))

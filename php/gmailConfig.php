@@ -33,9 +33,9 @@ require_once('../google-api-php-client/autoload.php');
   Kathleen Client ID
   
  ************************************************/
- $client_id = '635183243049-cvq4vpcl6mla7fk2f3qpls8s9bboo4lg.apps.googleusercontent.com';
- $client_secret = '4QQUciU4XQQC0Q2ABIDARi5-';
- $redirect_uri = 'http://localhost/senior_project/php/viewGmail.php';
+ $client_id = '24193142597-m4smre91ccf7i61ckip8l94ies8es3bh.apps.googleusercontent.com';
+ $client_secret = 'aMCdrU_-pfcF0E34uWTxHCaP';
+ $redirect_uri = 'http://localhost:81/senior_project/php/viewGmail.php';
 
 /************************************************
   Make an API request on behalf of a user. In

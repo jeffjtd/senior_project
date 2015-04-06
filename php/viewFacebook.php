@@ -42,16 +42,16 @@
                                         use Facebook\FacebookRequestException;
                                         use Facebook\FacebookAuthorizationException;
                                         use Facebook\GraphObject;
-                                        $appID = '647699142008684';
-                                        $appSecret = 'd17fabe5860188788545b1bae4fd6813';
+                                        $appID = '427760157376315';
+                                        $appSecret = 'cafdf42e83e677212b2c90024789d231';
                                         FacebookSession::setDefaultApplication($appID, $appSecret);
 
                                         // login helper with redirect_uri
-                                        $helper = new FacebookRedirectLoginHelper( 'http://localhost:/senior_project/php/viewFacebook.php' );
+                                        $helper = new FacebookRedirectLoginHelper( 'http://localhost:81/senior_project/php/viewFacebook.php' );
                                         FacebookSession::setDefaultApplication($appID, $appSecret);
 
                                         // login helper with redirect_uri
-                                        $helper = new FacebookRedirectLoginHelper( 'http://localhost/senior_project/php/viewFacebook.php' );
+                                        $helper = new FacebookRedirectLoginHelper( 'http://localhost:81/senior_project/php/viewFacebook.php' );
 
                                         try {
                                           $session = $helper->getSessionFromRedirect();

@@ -5,7 +5,7 @@ myApp.controller('myController', function($scope){
   var tabClasses;
   
   function initTabs() {
-    tabClasses = ["","","",""];
+    tabClasses = ["","","","",""];
   }
   
   $scope.getTabClass = function (tabNum) {
@@ -20,8 +20,9 @@ myApp.controller('myController', function($scope){
     initTabs();
     tabClasses[tabNum] = "active";
   };
+
+  $scope.tab1 = "<h2>HELLO THERE </h2>";
   /*
-  $scope.tab1 = "This is first section";
   $scope.tab2 = "This is SECOND section";
   $scope.tab3 = "This is THIRD section";
   $scope.tab4 = "This is FOUTRH section";
