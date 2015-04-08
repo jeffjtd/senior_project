@@ -130,7 +130,7 @@ function listMessages($service, $userId) {
       /* Any messages from your inbox and messages that are in your inbox that are categorized as SENT because they were sent by you */
       if($newMessage->getLabelIds()[0] == "INBOX" || ($newMessage->getLabelIds()[0] == "SENT" && $userId == $newMessage->getLabelIds()[0]) ){
            echo "<div class='indivMessage'>";
-          print " Header - " . $newMessage->getPayLoad()->getHeaders()[3]->getName() . " | " . $newMessage->getLabelIds()[1] ." | ";
+          print $newMessage->getPayLoad()->getHeaders()[3]->getName() . " | " . $newMessage->getLabelIds()[0] ." | ";
               print $newMessage->getPayLoad()->getHeaders()[3]->getValue(). "<br>";
               print "Message : " .$newMessage->getSnippet() . "<br> <br>";
             echo "</div>";

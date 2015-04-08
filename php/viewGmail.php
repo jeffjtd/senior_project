@@ -15,3 +15,6 @@ else {
         listMessages($service, "me");
     echo "</div>";
 }
+?>
+</body>
+</html>
