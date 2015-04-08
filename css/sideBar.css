@@ -143,3 +143,250 @@ textarea {
     border-width:thick;
     color:white;
 }
+
+.fbIcon {
+  margin-left:50%;
+  margin-top:10%;
+}
+
+/* facebook */
+/* UI Sortable */
+.ui-sortable .ibox-title {
+  cursor: move;
+}
+.ibox.ui-sortable-placeholder {
+  margin: 0px 0px 23px !important;
+}
+
+
+.ibox-content h1,
+.ibox-content h2,
+.ibox-content h3,
+.ibox-content h4,
+.ibox-content h5,
+.ibox-title h1,
+.ibox-title h2,
+.ibox-title h3,
+.ibox-title h4,
+.ibox-title h5 {
+  margin-top: 5px;
+}
+
+.ibox-content.text-box {
+  padding-bottom: 0px;
+  padding-top: 15px;
+}
+.ui-draggable .ibox-title {
+  cursor: move;
+}
+
+.ibox {
+  clear: both;
+  margin-bottom: 25px;
+  margin-top: 0;
+  padding: 0;
+}
+
+.ibox:after,
+.ibox:before {
+  display: table;
+}
+.ibox-title {
+  -moz-border-bottom-colors: none;
+  -moz-border-left-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-top-colors: none;
+  background-color: #ffffff;
+  border-color: #e7eaec;
+  border-image: none;
+  border-style: solid solid none;
+  border-width: 4px 0px 0;
+  color: inherit;
+  margin-bottom: 0;
+  padding: 14px 15px 7px;
+  height: 48px;
+}
+.ibox-content {
+  background-color: #ffffff;
+  color: inherit;
+  padding: 15px 20px 20px 20px;
+  border-color: #e7eaec;
+  border-image: none;
+  border-style: solid solid none;
+  border-width: 1px 0px;
+}
+
+
+.ibox-content {
+  clear: both;
+}
+.ibox-heading {
+  background-color: #f3f6fb;
+  border-bottom: none;
+}
+.ibox-heading h3 {
+  font-weight: 200;
+  font-size: 24px;
+}
+.ibox-title h5 {
+  display: inline-block;
+  font-size: 14px;
+  margin: 0 0 7px;
+  padding: 0;
+  text-overflow: ellipsis;
+  float: left;
+}
+.ibox-title .label {
+  float: left;
+  margin-left: 4px;
+}
+.ibox-tools {
+  display: inline-block;
+  float: right;
+  margin-top: 0;
+  position: relative;
+  padding: 0;
+}
+.ibox-tools a {
+  cursor: pointer;
+  margin-left: 5px;
+  color: #c4c4c4;
+}
+.ibox-tools a.btn-primary {
+  color: #fff;
+}
+.ibox-tools .dropdown-menu > li > a {
+  padding: 4px 10px;
+  font-size: 12px;
+}
+
+.skin-1 .ibox-title,
+.skin-1 .ibox-content {
+  border-width: 1px;
+}
+.skin-1 .ibox-content:last-child {
+  border-style: solid solid solid solid;
+}
+
+.skin-2 .ibox-title {
+  background: rgba(255, 255, 255, 0.7);
+  border: none;
+  margin-bottom: 1px;
+}
+.skin-2 .ibox-content {
+  background: rgba(255, 255, 255, 0.4);
+  border: none !important;
+}
+
+.skin-2 .ibox-title,
+.skin-2 .ibox-content {
+  border-width: 1px;
+}
+.skin-2 .ibox-content:last-child {
+  border-style: solid solid solid solid;
+}
+
+.skin-3 .ibox-title,
+.skin-3 .ibox-content {
+  border-width: 1px;
+}
+.skin-3 .ibox-content:last-child {
+  border-style: solid solid solid solid;
+}
+
+.float-e-margins .btn {
+  margin-bottom: 5px;
+}
+
+
+button.dim {
+  display: inline-block;
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  text-align: center;
+  padding-top: 6px;
+  margin-right: 10px;
+  position: relative;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: 600;
+  margin-bottom: 20px !important;
+}
+button.dim:active {
+  top: 3px;
+}
+button.btn-primary.dim {
+  box-shadow: inset 0px 0px 0px #16987e, 0px 5px 0px 0px #16987e, 0px 10px 5px #999999;
+}
+button.btn-primary.dim:active {
+  box-shadow: inset 0px 0px 0px #16987e, 0px 2px 0px 0px #16987e, 0px 5px 3px #999999;
+}
+button.btn-default.dim {
+  box-shadow: inset 0px 0px 0px #b3b3b3, 0px 5px 0px 0px #b3b3b3, 0px 10px 5px #999999;
+}
+button.btn-default.dim:active {
+  box-shadow: inset 0px 0px 0px #b3b3b3, 0px 2px 0px 0px #b3b3b3, 0px 5px 3px #999999;
+}
+button.btn-warning.dim {
+  box-shadow: inset 0px 0px 0px #f79d3c, 0px 5px 0px 0px #f79d3c, 0px 10px 5px #999999;
+}
+button.btn-warning.dim:active {
+  box-shadow: inset 0px 0px 0px #f79d3c, 0px 2px 0px 0px #f79d3c, 0px 5px 3px #999999;
+}
+button.btn-info.dim {
+  box-shadow: inset 0px 0px 0px #1eacae, 0px 5px 0px 0px #1eacae, 0px 10px 5px #999999;
+}
+button.btn-info.dim:active {
+  box-shadow: inset 0px 0px 0px #1eacae, 0px 2px 0px 0px #1eacae, 0px 5px 3px #999999;
+}
+button.btn-success.dim {
+  box-shadow: inset 0px 0px 0px #1872ab, 0px 5px 0px 0px #1872ab, 0px 10px 5px #999999;
+}
+button.btn-success.dim:active {
+  box-shadow: inset 0px 0px 0px #1872ab, 0px 2px 0px 0px #1872ab, 0px 5px 3px #999999;
+}
+button.btn-danger.dim {
+  box-shadow: inset 0px 0px 0px #ea394c, 0px 5px 0px 0px #ea394c, 0px 10px 5px #999999;
+}
+button.btn-danger.dim:active {
+  box-shadow: inset 0px 0px 0px #ea394c, 0px 2px 0px 0px #ea394c, 0px 5px 3px #999999;
+}
+button.dim:before {
+  font-size: 50px;
+  line-height: 1em;
+  font-weight: normal;
+  color: #fff;
+  display: block;
+  padding-top: 10px;
+}
+button.dim:active:before {
+  top: 7px;
+  font-size: 50px;
+}
+/*
+.notifications {
+  margin-left:10%;
+
+}*/
+.notificationContent{
+  float:left;
+  margin-top:2%;
+  margin-left:8%;
+   max-width:20%;
+
+}
+.fbMsgContent{
+  position:absolute;
+  margin-top:2%;
+  margin-left:30%;
+  max-width:80%;
+}
+
+.ibox-content, .ibox-title{
+   background-color:#F5F5F5;
+   border-radius:0.5em;
+   font-size:12px;
+   font-family:Menlo,Monaco,Consolas,"Courier New",monospace;
+
+}
