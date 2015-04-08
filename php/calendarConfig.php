@@ -16,7 +16,7 @@
  */
 include_once "../google-api-php-client/examples/templates/base.php";
 include_once "../google-api-php-client/src/Google/Service/Calendar.php";
-session_start();
+// session_start();
 require_once('../google-api-php-client/autoload.php');
 
 /************************************************
@@ -29,7 +29,7 @@ require_once('../google-api-php-client/autoload.php');
  ************************************************/
  $client_id = '635183243049-cvq4vpcl6mla7fk2f3qpls8s9bboo4lg.apps.googleusercontent.com';
  $client_secret = '4QQUciU4XQQC0Q2ABIDARi5-';
- $redirect_uri = 'http://localhost/senior_project/php/mainView.php';
+ $redirect_uri = 'http://localhost/senior_project/php/viewCalendar.php';
 
 /************************************************
   Make an API request on behalf of a user. In
@@ -113,10 +113,11 @@ if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
          
             $event->setSummary($eventTitle);
             $start = new Google_Service_Calendar_EventDateTime();
-            $start->setDateTime($date . 'T' . $hr . ':' . $min . ':00.000-05:00');
+            // make sure to search the web to grab the time zone from the web every time
+            $start->setDateTime($date . 'T' . $hr . ':' . $min . ':00.000-04:00');
             $event->setStart($start);
             $end = new Google_Service_Calendar_EventDateTime();
-            $end->setDateTime($date. 'T' . $endhr . ':' . $endmin . ':00.000-05:00');
+            $end->setDateTime($date. 'T' . $endhr . ':' . $endmin . ':00.000-04:00');
             $event->setEnd($end);
             
             $attendee1 = new Google_Service_Calendar_EventAttendee();

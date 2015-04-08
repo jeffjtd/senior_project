@@ -5,8 +5,8 @@ function weatherUpdate(){
 		datatype: "XML",
 		success: function(data)
 		{
-			alert("I'm here");
-			console.log(data);
+			// alert("I'm here");
+			// console.log(data);
 
 		}
 	});

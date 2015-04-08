@@ -1,0 +1,46 @@
+html, body {
+  min-height:100%;
+ background-color:#121212;
+    
+}
+.tab-content {
+    min-height:100vh;
+}
+
+.nav {
+    position:absolute;
+}
+.nav-tabs > li.active > a > .fa {
+  color:black;
+}
+.fa {
+  color: white;
+}
+
+
+/* Start of movie Content */
+#movieForm {
+    margin:3% 9%;
+    border-color:white;
+    border-width:thick;
+    color:white;
+}
+
+.inputType {
+    color:black;
+    margin-left:4em;
+}
+
+.movieContent, .weatherContent {
+    margin:5% 9%;
+    color:white;
+    
+}
+.indivMovie {
+    border-radius:1em;
+    border-width: thick;
+    border-color:black;
+    background-color:#424242;
+    padding-left:1em;
+}
+

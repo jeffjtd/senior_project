@@ -1,11 +1,15 @@
 html, body {
   min-height:100%;
-  background-color:#121212;
+ /* background-color:#121212;*/
+    
 }
 .tab-content {
     min-height:100vh;
 }
 
+.nav {
+    position:absolute;
+}
 .nav-tabs > li.active > a > .fa {
   color:black;
 }
@@ -16,7 +20,7 @@ html, body {
 /* Gmail Calendar */
 iframe {
     border: white;
-    margin-left:2em;
+    margin-left:10%;
     margin-top:1em;
     box-shadow: 0 0 5px 5px rgb(255, 255, 255);
     min-width:800px;
@@ -35,7 +39,7 @@ iframe {
   -o-transform: scale(3,3);
   -moz-transform: scale(3,3);
     
-  margin: 20% 45% 0% 45%;
+  margin: 15% 50%;
   border-color:grey;
   box-shadow: 0 0 0 0 rgba(136, 136, 136, 0.7);
   border-radius: 100%;
@@ -66,7 +70,7 @@ form {
    max-width:20%;
    position:absolute;
    margin-top:-42%;
-   margin-left:67%;
+   margin-left:78%;
    color:white;
 }
 form .select {
@@ -116,3 +120,26 @@ textarea {
     margin-left:-0.0em;
 }
 /* End of Calendar Event Form */
+
+/* Start of email Content */
+
+.emailContent {
+    margin: 2% 8%;
+    
+}
+.indivMessage{
+    border-radius:1em;
+    border-width: thick;
+    border-color:black;
+    background-color:#E1E1E1;
+    padding-left:1em;
+}
+
+/* end of email content */
+
+/* Start of movie Content */
+#movieForm {
+    border-color:white;
+    border-width:thick;
+    color:white;
+}

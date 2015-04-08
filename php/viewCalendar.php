@@ -2,8 +2,10 @@
 header('X-Frame-Options: GOFORIT'); 
 $isCalendarShowing = FALSE;
 
+include_once "../html/links.html";
+session_start(); 
+include_once "tabs.php";
 include_once "calendarConfig.php";
-
 
 if (isset($authUrl)) {
     echo 

@@ -1,37 +1,20 @@
-<!DOCTYPE html>
-<html>
 
-<head>
-  <?php
-    session_start();
-  ?>
-    
-
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../font-awesome/css/font-awesome.css" rel="stylesheet">
+                                      <!--..............PHP................
 
 
-    <!-- Gritter -->
-    <link href="../js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
+IN THE CSS HIDE 
+table .xdebug-error .xe-notice 
+{
+    display:none;
+}
 
-   <!-- <link href="../css/animate.css" rel="stylesheet">
-    <link href="../css/style.css" rel="stylesheet">-->
-    <link href="../css/minStyle.css" rel="stylesheet">
 
-</head>
 
-<body>
-    <div id="wrapper">
-    
-                    <a href="login.html">
-               
-                    </a>
-             
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="wrapper wrapper-content">
-                                      <!--..............PHP................-->
+
+
+-->
                                       <?php
+                                        session_start();
                                        require_once ('../fb/autoload.php');
 
                                         use Facebook\FacebookSession;
@@ -52,7 +35,8 @@
 
                                         // login helper with redirect_uri
                                         $helper = new FacebookRedirectLoginHelper( 'http://localhost/senior_project/php/viewFacebook.php' );
-
+                                         
+                                        
                                         try {
                                           $session = $helper->getSessionFromRedirect();
                                         } catch( FacebookRequestException $ex ) {
@@ -60,9 +44,13 @@
                                         } catch( Exception $ex ) {
                                           // When validation fails or other local issues
                                         }
-
+                                        // icon for facebook
+                                        echo '<a href="' . $helper->getLoginUrl($params) . '"><i class="fa fa-facebook"></i></a>';
+                                          
                                         // see if we have a session
                                         if ( isset( $session ) ) {
+                                            
+                                           
                                            // graph api request for user data
                                           $request = new FacebookRequest( $session, 'GET', '/me' );
                                         $accessToken = $appID . '|' . $appSecret;
@@ -92,18 +80,8 @@
                                           $params = array(
                                             'scope' => 'manage_notifications', 'read_mailbox'
                                             );
-                                          echo '<div class="row">
-                                                  <div class="col-lg-4"></div>
-                                                  <div class="col-lg-4">
-                                                      <div class="ibox float-e-margins">
-                                                     
-                                                        <div class="ibox-content" style="text-align:center">
-                                                          <a style="text-decoration:none; color:white;"class="btn btn-primary btn-lg btn-link dim"                                                                  role="button" href="' . $helper->getLoginUrl($params) . '">Login</a>
-                                                        </div>
-                                                    </div>
-                                                    </div>
-                                                </div>';
-                                          //echo '<a style="text-decoration:none; color:white;"class="btn btn-primary btn-lg btn-link dim" role="button" href="' . $helper->getLoginUrl($params) . '">Login</a>';   // show login url
+                                          
+                                           
                                         }
 
                                         function displayNotifications($graphObject) {
@@ -156,13 +134,6 @@
                                                         </div>
                                                         <div class="ibox-content">';
 
-                                              //Echo all the chat data
-                                              /*for($k = 0; $k < sizeof($graphObject['data'][$i]->comments->data); $k++)
-                                                if( isset($graphObject['data'][$i]->comments->data[$k]->message) ) {
-                                                  echo '<b>' . $graphObject['data'][$i]->comments->data[$k]->from->name . '</b><br />';
-                                                  echo $graphObject['data'][$i]->comments->data[$k]->message . '<br />';
-                                                }
-                                              */
                                               //Echo the messages that haven't been read
                                               for($k = $unreadMessages+5; $k > 0; $k--) {
                                                 $size = sizeof($graphObject['data'][$i]->comments->data) - $k;
@@ -185,21 +156,4 @@
                                           }
                                         }
                                     ?>
-                        </div>
-                </div>
-                <div class="footer">
-                    <div class="pull-right">
-                        10GB of <strong>250GB</strong> Free.
-                    </div>
-                    <div>
-                        <strong>Copyright</strong> Example Company &copy; 2014-2015
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        </div>
-    </div>
-
-</body>
-</html>
+           
